@@ -18,9 +18,8 @@ This piece of code performs clustering and visualizing TCGs.
 This piece of code performs constructing initial PPI networks and correlation networks. The following R packages should be installed: "ggm" and "ppcor".
 
 4.	ODENet_Sensitive.R and ODENet_Resistant.R
-This piece of code performs dynamic network reconstruction for sensitive cells. The output is a gene interaction matrix which is reformed for Cytoscape visualization. The following R packages should be installed:  "iterators" and " pracma".  
+This piece of code performs dynamic network reconstruction for sensitive cells or resistant cells. The output is a gene interaction matrix which is reformed for Cytoscape visualization. The following R packages should be installed:  "iterators" and " pracma".  
 
-This piece of code performs dynamic network reconstruction for resistant cells. The output is a gene interaction matrix which is reformed for Cytoscape visualization. The following R packages should be installed:  "iterators" and " pracma".
 
 5.	Differential_Network.R 
 This piece of code performs differential network analysis, visualization, and characterization (quantifying topological hubs, adaptation dynamics and local network entropy). The following R packages are required to be installed: “igraph” and "vioplot".

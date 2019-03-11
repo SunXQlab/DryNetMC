@@ -1,5 +1,5 @@
-# DDNCDR
-Differential Dynamic Network for Cancer Drug Resistance (DDNCDR)
+# DDNMC
+Differential Dynamic Network-based Modeling and Characterization (DDNMC) for Cancer Drug Resistance 
 
 --Modeling and characterizing dynamic gene regulatory networks underlying cancer drug resistance based on time course RNA-seq data
 

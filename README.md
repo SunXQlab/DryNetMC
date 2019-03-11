@@ -7,9 +7,10 @@ Differential Dynamic Network for Cancer Drug Resistance (DDNCDR)
 
 --- Work protocol for implementing the code---
 
-The case study gene expression data are saved in “GBM_gene_RPKM.csv”. The file path in the codes for loading this dataset should be customly re-set to the working folder.  
+The case study gene expression data are saved in “GBM_gene_RPKM.csv”. The file path in the codes for loading this dataset should be customized to the working folder.  
 
-The codes in the pipeline can be run in the following order:
+The main codes were implemented in R (R version 3.5.1). The pipeline can be run in the following order:
+
 1.	DEG.R
 
 This piece of code performs analyzing conventional differentially expressed genes (DEGs) and temporally changing genes (TCGs) defined in our study, as well as normalization and heat map visualization. The following R packages are required to be installed: “plotrix”, "gplots", and “pheatmap”.  

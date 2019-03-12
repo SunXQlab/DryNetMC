@@ -5,9 +5,8 @@ Differential Dynamic Network-based Modeling and Characterization (DDNMC) for Can
 
 
 
---- Work protocol for implementing the code---
+--- Work protocol---
 
-The case study gene expression data are saved in “GBM_gene_RPKM.csv”. The file path in the codes for loading this dataset should be customized to the working folder.  
 
 The main codes were implemented in R (R version 3.5.1). The pipeline can be run in the following order:
 
@@ -53,4 +52,8 @@ This piece of code performs D2NB identification, differential expression analysi
 10.	Validation_Network.R
 
 This piece of code performs validation of the dynamic network reconstruction method based on a synthetic dataset in comparison to the correlation network method. The following R packages are required to be installed: “pracma”, “glmnet” and “ROCR”. 
+
+
+The case study gene expression data are saved in “GBM_gene_RPKM.csv”. The file path in the codes for loading this dataset should be customized to the working folder.  
+
 

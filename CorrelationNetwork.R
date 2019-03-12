@@ -1,7 +1,7 @@
 
 
 ##### read DEGs 
-setwd("F:/胶质瘤诱导分化组学数据分析/Code-cluster_based") 
+setwd("Path") 
 
 install.packages("ggm")
 library(ggm)
@@ -13,14 +13,13 @@ if(!require("ppcor")){
   library(ppcor)
 }
 
-DEG_S=read.table("F:/胶质瘤诱导分化组学数据分析/Code-cluster_based/Results/Drug Sensitive Genes.txt",fill= FALSE)
-DEG_R=read.table("F:/胶质瘤诱导分化组学数据分析/Code-cluster_based/Results/Drug Resistant Genes.txt",fill= FALSE) 
+DEG_S=read.table("Path/Results/Drug Sensitive Genes.txt",fill= FALSE)
+DEG_R=read.table("Path/Results/Drug Resistant Genes.txt",fill= FALSE) 
 
 names_SR=union(rownames(DEG_S),rownames(DEG_R))
 
 
-setwd("F:/胶质瘤诱导分化组学数据分析/Data")  
-Gene_RPKM=read.csv("F:/胶质瘤诱导分化组学数据分析/Data/GBM_gene_RPKM.csv",fill= T,header = F)
+Gene_RPKM=read.csv("Path/GBM_gene_RPKM.csv",fill= T,header = F)
 Gene_RPKM=na.omit(Gene_RPKM)
 Gene_S=Gene_RPKM[,2:6]  ## Sensitive cell line
 Gene_R=Gene_RPKM[,7:11] ## Resistant cell line
@@ -34,11 +33,11 @@ rownames(Gene_R)=Gene_RPKM[,1]
 Node_gene_1=Gene_S[names_SR,]
 Node_gene_2=Gene_R[names_SR,]
 
-write.table(Node_gene_1,file="F:/胶质瘤诱导分化组学数据分析/Code-cluster_based/Results/PPI Node",sep = "\t", col.names = NA)
+write.table(Node_gene_1,file="Path/Results/PPI Node",sep = "\t", col.names = NA)
 
 
 ##### Initial PPI network
-PPI_pair=read.csv("F:/胶质瘤诱导分化组学数据分析/Code-cluster_based/Results/PPI.csv",header = FALSE)
+PPI_pair=read.csv("Path/Results/PPI.csv",header = FALSE)
 NetGene12=PPI_pair[,1:2]
 NetGene=union(NetGene12[,1],NetGene12[,2])
 Netsize=length(NetGene)  #75 
@@ -74,7 +73,7 @@ rownames(PPI)=NetGene
 colnames(PPI)=NetGene
 sum(PPI)  #=  edges
 
-setwd("F:/胶质瘤诱导分化组学数据分析/Code-cluster_based/Results")  
+setwd("Path/Results")  
 write.table(PPI, file="PPI matrix.xls",sep='\t') 
 
 
@@ -116,7 +115,7 @@ for (i in 1:Netsize)
 
 
 #####  Save PPC 
-setwd("F:/胶质瘤诱导分化组学数据分析/Code-cluster_based/Results")  
+setwd("Path/Results")  
 write.table(PC_S, file="Pearson correlation for sensitive genes.txt") 
 write.table(PC_R, file="Pearson correlation for Resistant genes.txt") 
 write.table(PC_p_S, file="p value of Pearson correlation for sensitive genes.txt") 
@@ -175,7 +174,7 @@ write.table(edge_R, file="edge matrix for Resistant genes.txt",col.names = NA,se
 Node_gene_S=Gene_S[Net_Gene,]
 Node_gene_R=Gene_R[Net_Gene,]
 
-setwd("F:/胶质瘤诱导分化组学数据分析/Code-cluster_based/Results") 
+setwd("Path/Results") 
 write.table(Node_gene_S, file="Node_S.xls",col.names = NA,sep = "\t") 
 write.table(Node_gene_R, file="Node_R.xls",col.names = NA,sep = "\t") 
 

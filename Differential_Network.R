@@ -3,10 +3,10 @@
 
 ########### Differential Network #############
 
-setwd("F:/胶质瘤诱导分化组学数据分析/Code-cluster_based/Results") 
+setwd("Path/Results") 
 Net_Gene=read.csv('Net_Gene.csv',fill= T,header = F)
-Edge_S=read.table("F:/胶质瘤诱导分化组学数据分析/Code/ElasticNet/Significant Coefficient_Sensitive Network.xls")
-Edge_R=read.table("F:/胶质瘤诱导分化组学数据分析/Code/ElasticNet/Significant Coefficient_Resistant Network.xls")
+Edge_S=read.table("Significant Coefficient_Sensitive Network.xls")
+Edge_R=read.table("Significant Coefficient_Resistant Network.xls")
 
 
 E_S=E_S[,-c(1,2)]
@@ -44,7 +44,6 @@ for (i in 1:dim(E_R_matrix)[1])
 
 dim(E_D)
 
-setwd("F:/胶质瘤诱导分化组学数据分析/Code-cluster_based/Results")  
 write.table(E_D, file="Differential Network Coefficient.txt",col.names = NA,sep = "\t")
 
 ### Reform txt data for cytoscape 
@@ -74,7 +73,7 @@ write.table(C, file="Cytoscape_Differential Network.txt",quote=F,row.names=F,col
 ########################### Network topology analysis ###############################
 
 library(igraph) # Load the igraph package
-setwd("F:/胶质瘤诱导分化组学数据分析/Code-cluster_based/Results")  
+ 
 C=read.table("Cytoscape_Differential Network.txt")
 Net_Diff=as.data.frame(cbind(as.character(C[,1]),as.character(C[,3]),C[,2]))  # Input data for R analysis, data.frame
 
@@ -166,7 +165,6 @@ neighbors(net, "ANLN", mode="all")
 
 ############## Adaptation dynamics
 
-setwd("F:/胶质瘤诱导分化组学数据分析/Code-cluster_based/Results") 
 
 Node_S=read.table("Node_S.xls") 
 Node_R=read.table("Node_R.xls") 
@@ -231,7 +229,7 @@ S_sort=sort(S,decreasing=T)
 
 #### Entropy of node in sensitive network
 library(igraph) # Load the igraph package
-setwd("F:/胶质瘤诱导分化组学数据分析/Code-cluster_based/Results") 
+
 Net_Gene=read.csv('Net_Gene.csv',fill= T,header = F)
 E_S=read.table("Coefficient_GeneNetwork_Sensitive.txt",header = T,sep="\t",fileEncoding = "UTF-8",row.names=1)
 E_R=read.table("Significant Coefficient_Resistant Network.xls",header = F,sep="\t",fileEncoding = "UTF-8")
@@ -253,8 +251,6 @@ rownames(E_R_matrix)=rownames(E_R)
 colnames(E_R_matrix)=colnames(E_R)
 
 
-
-setwd("F:/胶质瘤诱导分化组学数据分析/Code-cluster_based/Results")  
 C_S=read.table("Cytoscape_Net_Sensitive_New.txt")
 Net_S=as.data.frame(cbind(as.character(C_S[,1]),as.character(C_S[,3]),C_S[,2]))  # Input data for R analysis, data.frame
 net_S=graph_from_data_frame(Net_S, directed = T,vertices = NULL) 
@@ -274,8 +270,7 @@ for (i in 1:dim(E_S_matrix)[1])
   }
 }
 names(S_S)=rownames(E_S_matrix)
-
-setwd("F:/胶质瘤诱导分化组学数据分析/Code-cluster_based/Results")  
+ 
 C_R=read.table("Cytoscape_Net_Resistant_new.txt")
 Net_R=as.data.frame(cbind(as.character(C_R[,1]),as.character(C_R[,3]),C_R[,2]))  # Input data for R analysis, data.frame
 net_R=graph_from_data_frame(Net_R, directed = T,vertices = NULL) 

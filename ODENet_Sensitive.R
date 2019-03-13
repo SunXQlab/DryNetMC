@@ -4,7 +4,7 @@
 install.packages("iterators")
 library(glmnet)  # manually load this package by downloading and installing from Toll. 
 
-# setwd("F:/胶质瘤诱导分化组学数据分析/Code-cluster_based/Results") 
+setwd("Path/Results") 
 # DEG_S_cluster_con=read.csv("DEG_S_cluster_con.csv",fill= T,header = F)
 # rowname=DEG_S_cluster_con[,1]
 # DEG_S_cluster_con=DEG_S_cluster_con[,-1]
@@ -23,7 +23,7 @@ rownames(DEG_S_cluster_con)=rownames(TC_gene_1_Normalized)
 
 
 
-PPI_pair=read.csv("F:/胶质瘤诱导分化组学数据分析/Code-cluster_based/Results/PPI.csv",header = FALSE)
+PPI_pair=read.csv("PPI.csv",header = FALSE)
 NetGene12=PPI_pair[,1:2]
 NetGene=union(NetGene12[,1],NetGene12[,2])
 Netsize=length(NetGene)  #75 
@@ -83,8 +83,6 @@ hist(log10(Lambda),freq = T, col=rainbow(4,alpha=0.5)[3],breaks = 30,xlim=c(-5,-
 hist(Error_CV_mean,freq = T,col=rainbow(4,alpha=1)[2], breaks = 30,xlim=c(0,0.0035),ylim=c(0, 25))
 
 
-
-setwd("F:/胶质瘤诱导分化组学数据分析/Code-cluster_based/Results") 
 write.table(A, file="Edge Coefficient_Sensitive Network.xls",col.names = NA,sep = "\t")
 
 A=read.table("Coefficient_Sensitive Network.xls",header = T,sep="\t",fileEncoding = "UTF-8",row.names=NULL)
@@ -124,7 +122,7 @@ for (i in variable)#)
 
 ind=1
 
-for (theta in 10^seq(-5,0,0.1))  # seq(.)里的(to - from)/by 
+for (theta in 10^seq(-5,0,0.1))  # seq(.)閲岀殑(to - from)/by 
 {
   
   # Y_predict=matrix(NA,nrow=dim(x)[1],ncol=dim(x)[2])

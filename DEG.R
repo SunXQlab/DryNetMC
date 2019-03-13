@@ -1,7 +1,7 @@
 
 #######  Select DEGs from RNA seq Data
-setwd("F:/½ºÖÊÁöÓÕµ¼·Ö»¯×éÑ§Êı¾İ·ÖÎö/Data")  
-Gene_RPKM=read.csv("F:/½ºÖÊÁöÓÕµ¼·Ö»¯×éÑ§Êı¾İ·ÖÎö/Data/GBM_gene_RPKM.csv")
+setwd("Path/Data")  
+Gene_RPKM=read.csv("GBM_gene_RPKM.csv")
 Gene_RPKM=na.omit(Gene_RPKM)
 Gene_S=Gene_RPKM[,2:6]  ## Sensitive cell line
 Gene_R=Gene_RPKM[,7:11] ## Resistant cell line
@@ -65,7 +65,7 @@ DEG_R1=unique(DEG_R1)
 DEG_S1
 DEG_R1
 
-####  »­Ë«×ø±êÖá
+####  ç”»åŒåæ ‡è½´
 install.packages('plotrix')
 library(plotrix)
 xpos <- 1:4
@@ -140,14 +140,9 @@ intersect(rownames(DEG_S),rownames(DEG_R))
 
 
 #####  Save TCGs 
-setwd("F:/½ºÖÊÁöÓÕµ¼·Ö»¯×éÑ§Êı¾İ·ÖÎö/Code-cluster_based/Results")
+setwd("Path/Results")
 write.table(DEG_S, file="Drug Sensitive Genes.txt")
 write.table(DEG_R, file="Drug Resistant Genes.txt")
-# 
-# 
-# DEG_S=read.table("F:/½ºÖÊÁöÓÕµ¼·Ö»¯×éÑ§Êı¾İ·ÖÎö/Code-cluster_based/Results/Drug Sensitive Genes.txt")
-# DEG_R=read.table("F:/½ºÖÊÁöÓÕµ¼·Ö»¯×éÑ§Êı¾İ·ÖÎö/Code-cluster_based/Results/Drug Resistant Genes.txt")
-
 
 
 names_SR=union(rownames(DEG_S),rownames(DEG_R))
@@ -179,17 +174,17 @@ for (i in 1:dim(TC_gene_1)[1])
 colnames(TC_gene_1_Normalized)=c("S_D1","S_D2","S_D3","S_D4","S_D5")
 colnames(TC_gene_2_Normalized)=c("R_D1","R_D2","R_D3","R_D4","R_D5")
 
- setwd("F:/½ºÖÊÁöÓÕµ¼·Ö»¯×éÑ§Êı¾İ·ÖÎö/Code-cluster_based/Results")  
+ setwd("Path/Results")  
  write.table(TC_gene_1_Normalized, file="TC_gene_1_Normalized.txt",col.names = NA,sep = "\t") 
  write.table(TC_gene_2_Normalized, file="TC_gene_2_Normalized.txt",col.names = NA,sep = "\t")
 
 ####  Heatmap
 
-install.packages("gplots") #ÏÂÔØgplots³ÌĞò°ü
-library(gtools) #¼ÓÔØgplots³ÌĞò
-library(gplots) #¼ÓÔØgplots³ÌĞò
+install.packages("gplots") #ä¸‹è½½gplotsç¨‹åºåŒ…
+library(gtools) #åŠ è½½gplotsç¨‹åº
+library(gplots) #åŠ è½½gplotsç¨‹åº
 
-install.packages("caTools") #ÏÂÔØgplots³ÌĞò°ü
+install.packages("caTools") #ä¸‹è½½gplotsç¨‹åºåŒ…
 
 
 
@@ -210,8 +205,8 @@ hv2=heatmap.2(t(x_R),distfun = dist,hclustfun = hclust,scale="none",na.rm=TRUE,c
 
 
 library(pheatmap)
-pheatmap(x_S,cluster_row=FALSE, cellwidth = 2, cellheight = 20,color = colorRampPalette(c("navy", "white", "firebrick3"))(50), fontsize=9, fontsize_row=6,labRow=NA) #×Ô¶¨ÒåÑÕÉ«
-pheatmap(t(x_R),cluster_row=FALSE, cellwidth = 5, cellheight = 20,color = colorRampPalette(c("navy", "white", "firebrick3"))(50), fontsize=9, fontsize_row=6) #×Ô¶¨ÒåÑÕÉ«
+pheatmap(x_S,cluster_row=FALSE, cellwidth = 2, cellheight = 20,color = colorRampPalette(c("navy", "white", "firebrick3"))(50), fontsize=9, fontsize_row=6,labRow=NA) #è‡ªå®šä¹‰é¢œè‰²
+pheatmap(t(x_R),cluster_row=FALSE, cellwidth = 5, cellheight = 20,color = colorRampPalette(c("navy", "white", "firebrick3"))(50), fontsize=9, fontsize_row=6) #è‡ªå®šä¹‰é¢œè‰²
 
 
 

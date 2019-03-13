@@ -2,7 +2,7 @@
 ## Detect feedback loops in the GRN of glioma drug resistance 
 
 
-setwd("F:/½ºÖÊÁöÓÕµ¼·Ö»¯×éÑ§Êı¾İ·ÖÎö/Code-cluster_based/Results") 
+setwd("Path/Results") 
 
 
 ############# Read sensitive network coefficient
@@ -205,8 +205,6 @@ TotalEdge=sum(B_Net!=0)
 Percent=c(n1/TotalEdge,n2/TotalEdge,n3/TotalEdge,n4/TotalEdge,n5/TotalEdge)
 Percent
 
-
-setwd("F:/½ºÖÊÁöÓÕµ¼·Ö»¯×éÑ§Êı¾İ·ÖÎö/Code-cluster_based/Results") 
 write.table(NFB, file="Negative Feedback_Links.txt",quote=F,row.names=F,col.names = F,sep = "\t")
 write.table(PNFB, file="Coupled_PN_Feedback_Links.txt",quote=F,row.names=F,col.names = F,sep = "\t")
 write.table(NNFB, file="Coupled_NN_Feedback_Links.txt",quote=F,row.names=F,col.names = F,sep = "\t")
@@ -224,7 +222,7 @@ sum(B_R!=0)
 # 
 # 
 # library(igraph) # Load the igraph package
-# setwd("F:/½ºÖÊÁöÓÕµ¼·Ö»¯×éÑ§Êı¾İ·ÖÎö/Code-cluster_based/Results")  
+# setwd("F:/èƒ¶è´¨ç˜¤è¯±å¯¼åˆ†åŒ–ç»„å­¦æ•°æ®åˆ†æ/Code-cluster_based/Results")  
 # 
 # 
 # #### Sensitive network analysis 

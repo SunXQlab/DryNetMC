@@ -1,6 +1,6 @@
 
 
-setwd("F:/胶质瘤诱导分化组学数据分析/Code-cluster_based/Results") 
+setwd("Path/Results") 
 install.packages("iterators")
 library(glmnet)  # manually load this package by downloading and installing from Toll. 
 library(foreach)
@@ -97,7 +97,7 @@ hist(log10(Lambda),freq = T, col=rainbow(4,alpha=0.5)[3],breaks = 30,xlim=c(-4.5
 
 hist(Error_CV_mean,freq = T,col=rainbow(4,alpha=0.5)[2], breaks = 30,xlim=c(0,0.0030),ylim=c(0, 15))
 
-setwd("F:/胶质瘤诱导分化组学数据分析/Code-cluster_based/Results") 
+
 write.table(A, file="Edge Coefficient_Resistant Network.xls",col.names = NA,sep = "\t")
 
 A=read.table("Edge Coefficient_Resistant Network.xls",header = T,sep="\t",fileEncoding = "UTF-8",row.names=NULL)
@@ -138,7 +138,7 @@ for (i in variable)#)
 
 ind=1
 
-for (theta in 10^seq(-5,0,0.5))  # seq(.)里的(to - from)/by 
+for (theta in 10^seq(-5,0,0.5))  # seq(.)閲岀殑(to - from)/by 
 {
   
   # Y_predict=matrix(NA,nrow=dim(x)[1],ncol=dim(x)[2])
@@ -181,7 +181,7 @@ plot(log(Theta,10),MSE,type="b",main="MSE",sub='',xlim=c(-5,0), ylim=c(min(MSE),
 plot(log(Theta,10),BIC,type="b",main="BIC",sub='',xlim=c(-5,0), ylim=c(min(BIC), max(BIC)),xlab="theta",ylab='BIC',pch=21,col="gray",cex=2,bg="blue",lty=4,lwd=2)
 
 
-# R画图设置参见:  https://blog.csdn.net/zhyoulun/article/details/46430807  
+# R鐢诲浘璁剧疆鍙傝:  https://blog.csdn.net/zhyoulun/article/details/46430807  
 
 timeend<-Sys.time()
 runningtime<-timeend-timestart

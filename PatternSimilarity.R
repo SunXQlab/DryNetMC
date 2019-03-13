@@ -4,8 +4,8 @@ install.packages("vioplot")
 library(vioplot)
 
 #######  Select DEGs from RNA seq Data
-setwd("F:/Files from office/½ºÖÊÁöÓÕµ¼·Ö»¯×éÑ§Êı¾İ·ÖÎö/Data")  
-Gene_RPKM=read.csv("F:/Files from office/½ºÖÊÁöÓÕµ¼·Ö»¯×éÑ§Êı¾İ·ÖÎö/Data/GBM_gene_RPKM.csv")
+setwd("Path")  
+Gene_RPKM=read.csv("GBM_gene_RPKM.csv")
 Gene_RPKM=na.omit(Gene_RPKM)
 Gene_S=Gene_RPKM[,2:6]  ## Sensitive cell line
 Gene_R=Gene_RPKM[,7:11] ## Resistant cell line
@@ -74,24 +74,9 @@ dim(DEG_R)  #101,5
 
 # plot(c(0,6,12,24,48),DEG_R["STC1",],type="b",main="DEG_R",sub='',xlim=c(0,50), ylim=c(min(DEG_R["STC1",]), max(DEG_R["STC1",])),xlab="Time (Hours)",ylab='Gene Expression')
 
-########## 
-
-
-
-#####  Save DEGs 
-# setwd("F:/½ºÖÊÁöÓÕµ¼·Ö»¯×éÑ§Êı¾İ·ÖÎö/Code-cluster_based/Results")  
-# write.table(DEG_S, file="Drug Sensitive Genes.txt") 
-# write.table(DEG_R, file="Drug Resistant Genes.txt") 
-# 
-# 
-# DEG_S=read.table("F:/½ºÖÊÁöÓÕµ¼·Ö»¯×éÑ§Êı¾İ·ÖÎö/Code-cluster_based/Results/Drug Sensitive Genes.txt")
-# DEG_R=read.table("F:/½ºÖÊÁöÓÕµ¼·Ö»¯×éÑ§Êı¾İ·ÖÎö/Code-cluster_based/Results/Drug Resistant Genes.txt")
-
-
-
 names_SR=union(rownames(DEG_S),rownames(DEG_R))
 
-setwd("F:/Files from office/½ºÖÊÁöÓÕµ¼·Ö»¯×éÑ§Êı¾İ·ÖÎö/Code-cluster_based/Results") 
+setwd("Path/Results") 
 Gene_Annotation=read.csv("Gene Annotation_ranked.csv",sep = ",") 
 GeneName=Gene_Annotation[,1]
 
@@ -104,7 +89,7 @@ TC_gene_1=Gene_S[GeneName,]  # Temporally changing genes of sensitivity
 TC_gene_2=Gene_R[GeneName,]  # Temporally changing genes of resistance
 TC_gene_3=Gene_U[GeneName,]  # Temporally changing genes of test cell line
 
- setwd("F:/½ºÖÊÁöÓÕµ¼·Ö»¯×éÑ§Êı¾İ·ÖÎö/Code-cluster_based/Results")  
+ setwd("Path/Results")  
  write.table(TC_gene_1, file="TC_gene_1.txt",quote=F,row.names=F,col.names = F,sep = "\t") 
  write.table(TC_gene_2, file="TC_gene_2.txt",quote=F,row.names=F,col.names = F,sep = "\t") 
  write.table(TC_gene_3, file="TC_gene_3.txt",quote=F,row.names=F,col.names = F,sep = "\t") 
@@ -118,7 +103,7 @@ wilcox.test(D_1,D_2,alternative="less", paired=T)  # Wilcoxon signed rank test w
 vioplot(D_1,D_2,names=c("Distance to Sensitive cells","Distance to Resistant cells"),col=c("green","brown"))
 title("Temporal Pattern Similarity_Euclid Distance")
 
-temp <- locator(1) # ÔÚÍ¼±íÉÏ£¬ÄãÏ²»¶µÄµØ·½µã»÷Ò»ÏÂ£¬ÎÄ×Ö¾Í³öÀ´ÁË
+temp <- locator(1) # åœ¨å›¾è¡¨ä¸Šï¼Œä½ å–œæ¬¢çš„åœ°æ–¹ç‚¹å‡»ä¸€ä¸‹ï¼Œæ–‡å­—å°±å‡ºæ¥äº†
 text(temp,"p-value = 0.01625")
 
 ### Manhattan Distance
@@ -129,7 +114,7 @@ wilcox.test(D_1,D_2,alternative="less", paired=T)  # Wilcoxon signed rank test w
 vioplot(D_1,D_2,names=c("Distance to Sensitive cells","Distance to Resistant cells"),col=c("green","brown"))
 title("Temporal Pattern Similarity_Manhattan Distance")
 
-temp <- locator(1) # ÔÚÍ¼±íÉÏ£¬ÄãÏ²»¶µÄµØ·½µã»÷Ò»ÏÂ£¬ÎÄ×Ö¾Í³öÀ´ÁË
+temp <- locator(1) # åœ¨å›¾è¡¨ä¸Šï¼Œä½ å–œæ¬¢çš„åœ°æ–¹ç‚¹å‡»ä¸€ä¸‹ï¼Œæ–‡å­—å°±å‡ºæ¥äº†
 text(temp,"p-value = 0.02675")
 
 ### Slope Distance
@@ -157,8 +142,8 @@ for (i in 1:42)
 }
 
 # Or ## calculate DTW distance in matlab "PatternSimilarity" and read the results from there saved
-# D1=read.table("F:/½ºÖÊÁöÓÕµ¼·Ö»¯×éÑ§Êı¾İ·ÖÎö/Code-cluster_based/Results/DTWDistance1.txt")
-# D2=read.table("F:/½ºÖÊÁöÓÕµ¼·Ö»¯×éÑ§Êı¾İ·ÖÎö/Code-cluster_based/Results/DTWDistance2.txt")
+# D1=read.table("Path/Results/DTWDistance1.txt")
+# D2=read.table("Path/Results/DTWDistance2.txt")
 # D1=as.numeric(D1)
 # D2=as.numeric(D2)
 
@@ -172,7 +157,7 @@ text(temp,"p-value = 0.01523")
 
 ##########  Heatmap of gene expression in the differential network
 
-DNG=read.csv("F:/Files from office/½ºÖÊÁöÓÕµ¼·Ö»¯×éÑ§Êı¾İ·ÖÎö/Code-cluster_based/Survival analysis/Data/Quantifing each node.csv")  # Differential network genes
+DNG=read.csv("Path/Survival analysis/Data/Quantifing each node.csv")  # Differential network genes
 Score=as.matrix(DNG[,c(1,9)])  # Importance Score
 Nodes=Score[,1]
 
@@ -188,9 +173,9 @@ library(pheatmap)
 dev.off()
 
 dev.new()
-pheatmap(x,cluster_row=T, cluster_cols=F, clustering_distance_rows='euclidean',clustering_method = "ward", cellwidth = 10, cellheight = 8,color = colorRampPalette(c("CornflowerBlue", "white", "firebrick3"))(50), fontsize=9, fontsize_row=6,labRow=NA) #×Ô¶¨ÒåÑÕÉ«
+pheatmap(x,cluster_row=T, cluster_cols=F, clustering_distance_rows='euclidean',clustering_method = "ward", cellwidth = 10, cellheight = 8,color = colorRampPalette(c("CornflowerBlue", "white", "firebrick3"))(50), fontsize=9, fontsize_row=6,labRow=NA) #è‡ªå®šä¹‰é¢œè‰²
 
 dev.new()
-pheatmap(t(x),cluster_row=F, cluster_cols=T, clustering_distance_rows='euclidean',clustering_method = "ward", cellwidth = 10, cellheight = 8,color = colorRampPalette(c("CornflowerBlue", "white", "firebrick3"))(50), fontsize=9, fontsize_row=6,labRow=NA) #×Ô¶¨ÒåÑÕÉ«
+pheatmap(t(x),cluster_row=F, cluster_cols=T, clustering_distance_rows='euclidean',clustering_method = "ward", cellwidth = 10, cellheight = 8,color = colorRampPalette(c("CornflowerBlue", "white", "firebrick3"))(50), fontsize=9, fontsize_row=6,labRow=NA) #è‡ªå®šä¹‰é¢œè‰²
 
 

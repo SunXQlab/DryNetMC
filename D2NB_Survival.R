@@ -45,7 +45,7 @@ install.packages("glmnet")
 library(glmnet)  # manually load this package by downloading and installing from Toll. 
 
 
-setwd("F:/Files from office/胶质瘤诱导分化组学数据分析/Code-cluster_based/Survival analysis")
+setwd("Path/Survival analysis")
 
 #### TCGA TargetedTherapy
 Gene_LGG=read.csv("Data/TCGA_LGG_GeneExpression.csv")
@@ -202,7 +202,7 @@ boxplot(t(AUC_Test_wLASSO),ylim=c(0,1))
 
 ############### Differential expression profiles of 7 genes in the Normal and Tumor tissues
 
-setwd("F:/Files from office/胶质瘤诱导分化组学数据分析/Code-cluster_based/Survival analysis") 
+setwd("Path/Survival analysis") 
 
 Gene_LGG=read.csv("Data/TCGA_LGG_GeneExpression.csv")
 rownames(Gene_LGG)=Gene_LGG[,1]
@@ -282,7 +282,7 @@ ensemble2symbol=as.matrix(ensemble2symbol)
 rownames(ensemble2symbol)=ensemble2symbol[,2]
 
 ###TCGA data
-setwd("F:/Files from office/胶质瘤诱导分化组学数据分析/Code-cluster_based/Survival analysis")
+setwd("Path/Survival analysis")
 
 Gene_LGG=read.csv("Data/TCGA_LGG_GeneExpression.csv")
 rownames(Gene_LGG)=Gene_LGG[,1]

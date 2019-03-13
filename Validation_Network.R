@@ -2,7 +2,7 @@
 
 library(glmnet)
 
-setwd("F:/Files from office/胶质瘤诱导分化组学数据分析/Code-cluster_based/ElasticNet/Validation_Network")
+setwd("Path")
 A=read.csv('ODE_Coefficients.csv',fill= T,header = F)
 
 

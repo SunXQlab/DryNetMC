@@ -3,12 +3,12 @@
 
 
 
-DNG=read.csv("F:/Files from office/½ºÖÊÁöÓÕµ¼·Ö»¯×éÑ§Êı¾İ·ÖÎö/Code-cluster_based/Survival analysis/Data/Quantifing each node.csv")  # Differential network genes
+DNG=read.csv("Path/Survival analysis/Data/Quantifing each node.csv")  # Differential network genes
 Score=as.matrix(DNG[,c(1,9)])  # Importance Score
 Nodes=Score[,1]
-setwd("F:/Files from office/½ºÖÊÁöÓÕµ¼·Ö»¯×éÑ§Êı¾İ·ÖÎö/Code-cluster_based/Results")  
+setwd("Path/Results")  
 
-E_D=read.table("F:/Files from office/½ºÖÊÁöÓÕµ¼·Ö»¯×éÑ§Êı¾İ·ÖÎö/Code-cluster_based/Results/Differential Network Coefficient.txt")
+E_D=read.table("Differential Network Coefficient.txt")
 E_D=as.matrix(E_D)
 BB=sign(E_D[Nodes,Nodes])
 
@@ -109,9 +109,9 @@ plot(tsne$Y, col = "#00FF66FF", type = "p", pch = 16,cex=1) #col = "#00FF66FF",
 
 ####  Heatmap
 
-# install.packages("gplots") #ÏÂÔØgplots³ÌĞò°ü
-library(gtools) #¼ÓÔØgplots³ÌĞò
-library(gplots) #¼ÓÔØgplots³ÌĞò
+# install.packages("gplots") #ä¸‹è½½gplotsç¨‹åºåŒ…
+library(gtools) #åŠ è½½gplotsç¨‹åº
+library(gplots) #åŠ è½½gplotsç¨‹åº
 
 x=sc_GeneExp
 rownames(x)=Nodes
@@ -139,6 +139,6 @@ library(pheatmap)
 dev.off()
 
 dev.new()
-pheatmap(x,cluster_row=T, cluster_cols=T, clustering_distance_rows='euclidean',clustering_method = "ward", cellwidth = 0.05, cellheight = 5,color = colorRampPalette(c("CornflowerBlue", "white", "firebrick3"))(50), fontsize=9, fontsize_row=6,labRow=NA) #×Ô¶¨ÒåÑÕÉ«
+pheatmap(x,cluster_row=T, cluster_cols=T, clustering_distance_rows='euclidean',clustering_method = "ward", cellwidth = 0.05, cellheight = 5,color = colorRampPalette(c("CornflowerBlue", "white", "firebrick3"))(50), fontsize=9, fontsize_row=6,labRow=NA) #è‡ªå®šä¹‰é¢œè‰²
 
 

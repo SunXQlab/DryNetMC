@@ -1,7 +1,7 @@
-# DDNMC
-Differential Dynamic Network-based Modeling and Characterization (DDNMC) for Cancer Drug Resistance 
+# DryNetMC
+Differential Regulatory Network-based Modeling and Characterization (DryNetMC) for Cancer Drug Resistance 
 
---Modeling and characterizing dynamic gene regulatory networks underlying cancer drug resistance based on time course RNA-seq data
+--Modeling and characterization of the dynamic gene regulatory networks underlying cancer drug resistance based on time course RNA-seq data
 
 
 

@@ -35,21 +35,15 @@ This piece of code performs differential network analysis, visualization, and ch
 
 This piece of code detects various types of 2-node and 3-node feedback motifs in the sensitive network and resistant network. 
 
-7.	scSimulation.R and scSimulation_random network.R
-
-This piece of code performs a single cell-based stochastic simulation based on the differential network topology or random networks for analyzing the cell trajectories. The following R packages are required to be installed: "pracma" and “destiny”.
-
-
-
-8.	PatternSimilarity.R
+7.	PatternSimilarity.R
 
 This piece of code performs calculation and comparison of the distance between the tested cell line and the sensitive or resistant cell line. The following R packages are required to be installed: “dtw” and "vioplot".  ‘PatternSimilarity.m’ can be alternatively used.
 
-9.	D2NB_Survival.R
+8.	D2NB_Survival.R
 
 This piece of code performs D2NB identification, differential expression analysis of the identified genes and K-M analysis. The following R packages are required to be installed: "AnnotationDbi", "bit", “org.Hs.eg.db", "lattice", "survival", "reshape2", "data.table", "zoo", "survminer", "survival", "glmnet" and "pROC".  
 
-10.	Validation_Network.R
+9.	Validation_Network.R
 
 This piece of code performs validation of the dynamic network reconstruction method based on a synthetic dataset in comparison to the correlation network method. The following R packages are required to be installed: “pracma”, “glmnet” and “ROCR”. 
 

@@ -383,22 +383,3 @@ dev.new()
 boxplot( value ~ group,  notch = F, dataset, border = c( "red","purple","#009E73","green", "blue"),cex = 1,cex.axis=1,pars = list(boxwex = 0.5, staplewex = 0.5, outwex = 0.5))  #,col.axis = "#009E73"
 
 
-# dev.new()
-# # library(ggpubr)
-# # library(digest)
-# p<-ggboxplot(dataset, "group", "value",
-#              color = "Samples", palette =c("#009E73","#00AFBB", "#FC4E07","#E7B800"),  #, "#E7B800"
-#              linetype = 1,
-#              title = FALSE, xlab = FALSE,
-#              font.label = list(size = 50, face = "plain"),
-#              order = c("PCCNet", "ODE_LASSO","GENIE3", "DryNetMC"),
-#              # fill = "Samples", palette =c("#FC4E07", "#00AFBB"),
-#              add = "jitter")
-# 
-# p
-# 
-# compar<-list(c("Normal","BRCA1_Mutated"))
-# 
-# p+stat_compare_means(comparisons = compar, method = "wilcox.test",  method.args = list(alternative = "less"),aes(label = paste0("p = ", ..p.format..)))+stat_compare_means(label.y = 1, show.legend = FALSE)   #
-# 
-# 

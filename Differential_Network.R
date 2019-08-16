@@ -59,8 +59,8 @@ for (i in 1:dim(BB)[1])
   {
     if (BB[i,j]!=0)
     {
-      C[row,1]=rownames(BB)[i]
-      C[row,3]=colnames(BB)[j]
+      C[row,1]=rownames(BB)[j]
+      C[row,3]=colnames(BB)[i]
       C[row,2]=BB[i,j]
       row=row+1
     }

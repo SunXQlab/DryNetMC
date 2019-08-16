@@ -45,11 +45,11 @@ This piece of code performs D2NB identification, differential expression analysi
 
 9.	Validation_Network.R
 
-This piece of code performs validation of the dynamic network reconstruction method based on a synthetic dataset in comparison to the following methods: PCC-based correlation network method (PCCNet), tree-based ensemble learning methods (GENIE3), the state-of-the-art ODE-LASSO method (OdeLasso), the method incorporating prior information (OdeLassoP) and a dynamic Bayesian network method (GRENITS). The following R packages are required to be installed: “pracma”, “glmnet” , "GRENITS" and “ROCR”. 
+This piece of code performs validation of the dynamic network reconstruction method based on a synthetic dataset in comparison to the following methods: PCC-based correlation network method (PCCNet), tree-based ensemble learning methods (GENIE3), the state-of-the-art ODE-LASSO method (OdeLasso), the method incorporating prior information (OdeLassoP) and a dynamic Bayesian network method (GRENITS). The following R packages are required to be installed: “pracma”, “glmnet” , "GRENITS" and “ROCR”. "ODE_coefficients.csv" used for generating sythetic data has been uploaded as well. 
 
 10.	Validation_Network_MoreDatasets.R
 
-This piece of code performs validation of the dynamic network reconstruction method based on 100 sets of synthetic dataset in comparison to the following methods: PCC-based correlation network method (PCCNet), tree-based ensemble learning methods (GENIE3), the state-of-the-art ODE-LASSO method (OdeLasso), the method incorporating prior information (OdeLassoP) and a dynamic Bayesian network method (GRENITS). The following R packages are required to be installed: “pracma”, “glmnet” , "GRENITS" and “ROCR”.
+This piece of code performs validation of the dynamic network reconstruction method based on 100 sets of synthetic dataset in comparison to the following methods: PCC-based correlation network method (PCCNet), tree-based ensemble learning methods (GENIE3), the state-of-the-art ODE-LASSO method (OdeLasso), the method incorporating prior information (OdeLassoP) and a dynamic Bayesian network method (GRENITS). The following R packages are required to be installed: “pracma”, “glmnet” , "GRENITS" and “ROCR”. "ODE_coefficients.csv" used for generating sythetic data has been uploaded as well. 
 
 
 The case study gene expression data are saved in “GBM_gene_RPKM.csv”. The file path in the codes for loading this dataset should be customized to the working folder.  

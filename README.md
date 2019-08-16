@@ -49,7 +49,15 @@ This piece of code performs validation of the dynamic network reconstruction met
 
 10.	Validation_Network_MoreDatasets.R
 
+This piece of code performs comparison of the effectiveness of the top 5 genes prioritized by the DryNetMC with that by other methods, including DEseq2 and GSNCA. The following R packages are required to be installed: “DESeq2”, "dtw", and “GSAR”. "ODE_coefficients.csv" used for generating sythetic data has been uploaded as well. 
+
+11.	Validation_Network_MoreDatasets.R
+
 This piece of code performs validation of the dynamic network reconstruction method based on 100 sets of synthetic dataset in comparison to the following methods: PCC-based correlation network method (PCCNet), tree-based ensemble learning methods (GENIE3), the state-of-the-art ODE-LASSO method (OdeLasso), the method incorporating prior information (OdeLassoP) and a dynamic Bayesian network method (GRENITS). The following R packages are required to be installed: “pracma”, “glmnet” , "GRENITS" and “ROCR”. "ODE_coefficients.csv" used for generating sythetic data has been uploaded as well. 
+.R
+
+This piece of code performs validation of the dynamic network reconstruction method based on 100 sets of synthetic dataset in comparison to the following methods: PCC-based correlation network method (PCCNet), tree-based ensemble learning methods (GENIE3), the state-of-the-art ODE-LASSO method (OdeLasso), the method incorporating prior information (OdeLassoP) and a dynamic Bayesian network method (GRENITS). The following R packages are required to be installed: “pracma”, “glmnet” , "GRENITS" and “ROCR”. "ODE_coefficients.csv" used for generating sythetic data has been uploaded as well. 
+
 
 
 The case study gene expression data are saved in “GBM_gene_RPKM.csv”. The file path in the codes for loading this dataset should be customized to the working folder.  

@@ -39,13 +39,17 @@ This piece of code detects various types of 2-node and 3-node feedback motifs in
 
 This piece of code performs calculation and comparison of the distance between the tested cell line and the sensitive or resistant cell line. The following R packages are required to be installed: “dtw” and "vioplot".  ‘PatternSimilarity.m’ can be alternatively used.
 
-8.	D2NB_Survival.R
+8.	DryNB_Survival.R
 
 This piece of code performs D2NB identification, differential expression analysis of the identified genes and K-M analysis. The following R packages are required to be installed: "AnnotationDbi", "bit", “org.Hs.eg.db", "lattice", "survival", "reshape2", "data.table", "zoo", "survminer", "survival", "glmnet" and "pROC".  
 
 9.	Validation_Network.R
 
-This piece of code performs validation of the dynamic network reconstruction method based on a synthetic dataset in comparison to the correlation network method. The following R packages are required to be installed: “pracma”, “glmnet” and “ROCR”. 
+This piece of code performs validation of the dynamic network reconstruction method based on a synthetic dataset in comparison to the following methods: PCC-based correlation network method (PCCNet), tree-based ensemble learning methods (GENIE3), the state-of-the-art ODE-LASSO method (OdeLasso), the method incorporating prior information (OdeLassoP) and a dynamic Bayesian network method (GRENITS). The following R packages are required to be installed: “pracma”, “glmnet” , "GRENITS" and “ROCR”. 
+
+10.	Validation_Network_MoreDatasets.R
+
+This piece of code performs validation of the dynamic network reconstruction method based on 100 sets of synthetic dataset in comparison to the following methods: PCC-based correlation network method (PCCNet), tree-based ensemble learning methods (GENIE3), the state-of-the-art ODE-LASSO method (OdeLasso), the method incorporating prior information (OdeLassoP) and a dynamic Bayesian network method (GRENITS). The following R packages are required to be installed: “pracma”, “glmnet” , "GRENITS" and “ROCR”.
 
 
 The case study gene expression data are saved in “GBM_gene_RPKM.csv”. The file path in the codes for loading this dataset should be customized to the working folder.  

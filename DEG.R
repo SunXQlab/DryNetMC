@@ -145,4 +145,44 @@ pheatmap(x_S,cluster_row=FALSE, cellwidth = 2, cellheight = 20,color = colorRamp
 pheatmap(t(x_R),cluster_row=FALSE, cellwidth = 5, cellheight = 20,color = colorRampPalette(c("navy", "white", "firebrick3"))(50), fontsize=9, fontsize_row=6) #自定义颜色
 
 
- 
+ ### Quantifying monotonicity and adaptation
+
+S_A=apply((abs(DEG_S-DEG_S[,1])),1,max)/(abs(DEG_S[,5]-DEG_S[,1]))  # Adaptation
+S_M=abs(DEG_S[,5]-DEG_S[,1])/apply(DEG_R,1,max)  # Monotonicity
+
+S_R=apply((DEG_R-DEG_R[,1]),1,max)/(abs(DEG_R[,5]-DEG_R[,1]))  # Adaptation
+R_M=abs(DEG_R[,5]-DEG_R[,1])/apply(DEG_R,1,max)  # Monotonicity
+
+S_A_M=(cbind(S_A,S_M))
+R_A_M=(cbind(R_A,R_M))
+
+
+dev.new()
+plot((S_A_M), pch = 23, col = "aquamarine3", cex = 1, xlim = c(0.8,5), ylim = c(-0.2,5), xlab= "Adaptive response", ylab= "Monotoic response")
+par(new=T) 
+plot((R_A_M), pch = 21, col = "darkgoldenrod",  cex = 1.5, xlim = c(0.8,5), ylim = c(-0.2,5), xlab= "", ylab= "")
+par(new=T)
+plot(c(4),c(4),pch = 23, col = "aquamarine3",  cex = 1, xlim = c(0.8,5), ylim = c(-0.2,5), xlab= "", ylab= "")  #bg="aliceblue",
+par(new=T)
+plot(c(4),c(4.5),pch = 21, col = "darkgoldenrod", cex = 1.5, xlim = c(0.8,5), ylim = c(-0.2,5), xlab= "", ylab= "")  #bg="ivory1", 
+
+
+
+dataset <- data.frame(value = c(S_A,R_A), group = factor(rep(c("Sensitive TCGs","Resistant TCGs"), times = c(length(S_A), length(R_A)))))
+dev.new()
+boxplot( t(value) ~ t(group),  notch = F, dataset, outline = FALSE, border = c("darkgoldenrod","aquamarine3"),cex = 1, ylab= "Adaptive response", cex.axis=1,pars = list(boxwex = 0.5, staplewex = 0.5, outwex = 0.5))  #,col.axis = "#009E73"
+
+wilcox.test(S_A,R_A,alternative="less")  # Wilcoxon signed rank test with continuity correction;
+temp <- locator(1) 
+text(temp,"p-value < 2.2e-16")
+
+
+dataset <- data.frame(value = c(S_M,R_M), group = factor(rep(c("Sensitive TCGs","Resistant TCGs"), times = c(length(R_M), length(S_M)))))
+dev.new()
+boxplot( t(value) ~ t(group),  notch = F, dataset, outline = FALSE, border = c( "darkgoldenrod","aquamarine3"), cex = 1,  ylab= "Monotonic response", cex.axis=1,pars = list(boxwex = 0.5, staplewex = 0.5, outwex = 0.5))  #,col.axis = "#009E73"
+
+wilcox.test(S_M,R_M,alternative="greater")  # Wilcoxon signed rank test with continuity correction;
+temp <- locator(1) 
+text(temp,"p-value = 5.552e-07")
+
+

@@ -1,7 +1,7 @@
 
 #######  Select DEGs from RNA seq Data
 setwd("Path/Data")  
-Gene_RPKM=read.csv("GBM_gene_RPKM.csv")
+Gene_RPKM=read.csv("Path/Data/GBM_gene_RPKM.csv")
 Gene_RPKM=na.omit(Gene_RPKM)
 Gene_S=Gene_RPKM[,2:6]  ## Sensitive cell line
 Gene_R=Gene_RPKM[,7:11] ## Resistant cell line
@@ -10,73 +10,7 @@ Gene_R=matrix(as.numeric(as.matrix(Gene_R)),dim(Gene_R)[1],dim(Gene_R)[2])
 rownames(Gene_S)=Gene_RPKM[,1]
 rownames(Gene_R)=Gene_RPKM[,1]
 
-###### DEG compared with 0 hour
-DEG_S0=matrix(0,1,4)
-for (i in 1:dim(Gene_S)[1]) 
-{ for (j in 2:5)
-{if ((max(Gene_S[i,])>=10) & (Gene_S[i,1]>0) & (Gene_S[i,j]>0) & (Gene_S[i,j]/Gene_S[i,1]>2 || Gene_S[i,j]/Gene_S[i,1]<0.5))
-  {
-  DEG_S0[,j-1]=DEG_S0[,j-1]+1
-  }
-}
-}
-DEG_S0=unique(DEG_S0)
-
-DEG_R0=matrix(0,1,4)
-for (i in 1:dim(Gene_R)[1]) 
-{ for (j in 2:5)
-{if ((max(Gene_R[i,])>=10) & (Gene_R[i,1]>0) & (Gene_R[i,j]>0) & (Gene_R[i,j]/Gene_R[i,1]>2 || Gene_R[i,j]/Gene_R[i,1]<0.5))
-  {
-  DEG_R0[,j-1]=DEG_R0[,j-1]+1
-  }
-}
-}
-
-DEG_R0=unique(DEG_R0)
-
-DEG_S0
-DEG_R0
-###############
-
-###### DEG compared with 0 hour
-DEG_S1=matrix(0,1,4)
-for (i in 1:dim(Gene_S)[1]) 
-{ for (j in 2:5)
-{if ((max(Gene_S[i,])>=10) & (Gene_S[i,1]>0) & (Gene_S[i,j]>0) & (Gene_S[i,j]/Gene_S[i,j-1]>2 || Gene_S[i,j]/Gene_S[i,j-1]<0.5))
-{
-  DEG_S1[,j-1]=DEG_S1[,j-1]+1
-}
-}
-}
-DEG_S1=unique(DEG_S1)
-
-DEG_R1=matrix(0,1,4)
-for (i in 1:dim(Gene_R)[1]) 
-{ for (j in 2:5)
-{if ((max(Gene_R[i,])>=10) & (Gene_R[i,1]>0) & (Gene_R[i,j]>0) & (Gene_R[i,j]/Gene_R[i,j-1]>2 || Gene_R[i,j]/Gene_R[i,j-1]<0.5))
-{
-  DEG_R1[,j-1]=DEG_R1[,j-1]+1
-}
-}
-}
-
-DEG_R1=unique(DEG_R1)
-
-DEG_S1
-DEG_R1
-
-####  画双坐标轴
-install.packages('plotrix')
-library(plotrix)
-xpos <- 1:4
-xlabel = c('6h/0h', '12h/0h','24h/0h', '48h/0h')
-twoord.plot(xpos,DEG_S0,xpos,DEG_R0,xlim=c(0.5,4.5),lylim=c(0,max(DEG_S0)+200),rylim=c(0,max(DEG_R0)+200), lpch=21,rpch=22,bg='green',lcol=4,rcol=2,ylab="Number of sensitive DEGs",rylab="Number of resistant DEGs",type=c("b","b"),xticklab=xlabel,halfwidth=0.2,cex.axis=1.5,cex.label=3)
-legend("top",legend=c("Sensitive cells","Resistant cells"),pch=c(21,22),col=c(4,2))
-legend('boxoff')
-
-dev.off()
-
-###### TCG of sensitive cells
+###### DEG of sensitive cells
 timestart<-Sys.time()
 DEG_S=c()
 RNames_DEG_S=c()
@@ -105,7 +39,7 @@ plot(c(0,6,12,24,48),DEG_S["STC1",],type="b",main="DEG_S",sub='',xlim=c(0,50), y
 
 
 
-####  TCG of resistance 
+####  DEG of resistance 
 
 timestart<-Sys.time()
 DEG_R=c()
@@ -139,10 +73,12 @@ dim(DEG_R)  #101,5
 intersect(rownames(DEG_S),rownames(DEG_R))
 
 
-#####  Save TCGs 
-setwd("Path/Results")
-write.table(DEG_S, file="Drug Sensitive Genes.txt")
-write.table(DEG_R, file="Drug Resistant Genes.txt")
+#####  Save DEGs 
+# setwd("Path/Results")  
+# write.table(DEG_S, file="Drug Sensitive Genes.txt") 
+# write.table(DEG_R, file="Drug Resistant Genes.txt") 
+# 
+# 
 
 
 names_SR=union(rownames(DEG_S),rownames(DEG_R))
@@ -180,11 +116,11 @@ colnames(TC_gene_2_Normalized)=c("R_D1","R_D2","R_D3","R_D4","R_D5")
 
 ####  Heatmap
 
-install.packages("gplots") #下载gplots程序包
+# install.packages("gplots") #下载gplots程序包
 library(gtools) #加载gplots程序
 library(gplots) #加载gplots程序
 
-install.packages("caTools") #下载gplots程序包
+# install.packages("caTools") #下载gplots程序包
 
 
 
@@ -207,9 +143,6 @@ hv2=heatmap.2(t(x_R),distfun = dist,hclustfun = hclust,scale="none",na.rm=TRUE,c
 library(pheatmap)
 pheatmap(x_S,cluster_row=FALSE, cellwidth = 2, cellheight = 20,color = colorRampPalette(c("navy", "white", "firebrick3"))(50), fontsize=9, fontsize_row=6,labRow=NA) #自定义颜色
 pheatmap(t(x_R),cluster_row=FALSE, cellwidth = 5, cellheight = 20,color = colorRampPalette(c("navy", "white", "firebrick3"))(50), fontsize=9, fontsize_row=6) #自定义颜色
-
-
-
 
 
  

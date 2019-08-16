@@ -1,8 +1,32 @@
 
-
 library(glmnet)
 
-setwd("Path")
+library(pracma)
+
+#### ROC package
+# install.packages("gplots")
+library(gplots)
+# install.packages("ROCR")
+library(ROCR)
+# install.packages("dplyr")
+library("dplyr")
+# install.packages("lubridate")
+library(lubridate)
+# install.packages("robustbase")
+# install.packages("caret")
+library(caret)
+library(pROC)
+
+# install.packages("timeROC")
+# install.packages("prodlim")
+# library(prodlim)
+# library(quantreg)
+# install.packages("quantreg")
+# install.packages("polspline")
+# library("polspline")
+# library(timeROC)
+
+setwd("Path/Validation_Network")
 A=read.csv('ODE_Coefficients.csv',fill= T,header = F)
 
 
@@ -153,4 +177,41 @@ roc1
 AUC=roc1$auc
 AUC
 
+### Compare with GRENITS (Bayesian method)
 
+library(GRENITS)
+# help(GRENITS)
+
+# ### An Example 
+# data(Athaliana_ODE)
+# output.folder <- paste(tempdir(), "/Example_LinearNet", sep="")
+# LinearNet(output.folder, Athaliana_ODE)
+# analyse.output(output.folder)
+# dir(output.folder)
+# prob.file <- paste(output.folder, "/NetworkProbability_Matrix.txt", sep = "")
+# prob.mat <- read.table(prob.file)
+# print(prob.mat)
+
+
+### Performance on ODE-simulated data
+output.folder <- "Path/Validation_Network"
+LinearNet(output.folder, as.data.frame(x_P) )
+analyse.output(output.folder)
+dir(output.folder)
+prob.file <- paste(output.folder, "/NetworkProbability_Matrix.txt", sep = "")
+prob.mat <- read.table(prob.file)
+print(prob.mat)
+
+M=as.matrix(prob.mat)
+
+pred <- prediction(as.vector(M),as.vector(sign(abs(CC))))
+perf <- performance(pred,"tpr","fpr")  # calculate probabilities for TPR/FPR for predictions
+performance(pred,"auc") # shows calculated AUC for model
+par(new=TRUE)
+plot(perf,colorize=FALSE, col="blue",lwd=2) # plot ROC curve
+lines(c(0,1),c(0,1),col = "gray", lty = 4 )
+
+roc1=roc(as.vector(sign(abs(CC))),as.vector(M))
+roc1
+AUC=roc1$auc
+AUC

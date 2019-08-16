@@ -1,4 +1,4 @@
-cd('F:\Files from office\胶质瘤诱导分化组学数据分析\Code-cluster_based\Results')
+cd('Path\Results')
 TCG1=xlsread('TC_gene_1_Normalized.xls');
 TCG2=xlsread('TC_gene_2_Normalized.xls');
 

@@ -2,7 +2,7 @@
 
 library(glmnet)
 
-setwd("F:/Files from office/胶质瘤诱导分化组学数据分析/Code-cluster_based/ElasticNet/Validation_Network")
+setwd("Path/Validation_Network")
 AA=read.csv('ODE_Coefficients.csv',fill= T,header = F)
 
 
@@ -315,7 +315,7 @@ for (Net_ind in 1:100)
   
   
   ### GRENITS
-  output.folder <- "F:/Files from office/胶质瘤诱导分化组学数据分析/Code-cluster_based/ElasticNet/Validation_Network"
+  output.folder <- "Path/Validation_Network"
   LinearNet(output.folder, as.data.frame(x_P) )
   analyse.output(output.folder)
   dir(output.folder)
